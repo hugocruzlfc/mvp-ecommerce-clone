@@ -1,12 +1,13 @@
 import { formatCurrency, formatNumber } from "@/lib/formatter";
 import prisma from "@/lib/prisma";
-import { Table, CheckCircle2, XCircle, MoreVertical, Link } from "lucide-react";
+import { CheckCircle2, XCircle, MoreVertical } from "lucide-react";
 import {
   TableHeader,
   TableRow,
   TableHead,
   TableBody,
   TableCell,
+  Table,
 } from "../ui/table";
 import {
   DropdownMenu,
@@ -16,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { ActiveToggleDropdownItem, DeleteDropdownItem } from "./ProductActions";
+import Link from "next/link";
 
 export async function ProductsTable() {
   const products = await prisma.product.findMany({
@@ -75,7 +77,7 @@ export async function ProductsTable() {
                   <DropdownMenuItem asChild>
                     <a
                       download
-                      href={`/admin/products/${product.id}/download`}
+                      href={`/api/products/${product.id}/download`}
                     >
                       Download
                     </a>
