@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import createDownloadVerification from "@/lib/create-email-verification";
 import { formatCurrency } from "@/lib/formatter";
 import prisma from "@/lib/prisma";
 
@@ -55,7 +56,7 @@ export default async function Page({
           >
             {isSuccess ? (
               <a
-                href={`/products/download/${await createDownloadVerification(
+                href={`/api/download/${await createDownloadVerification(
                   product.id
                 )}`}
               >
@@ -69,15 +70,4 @@ export default async function Page({
       </div>
     </div>
   );
-}
-
-async function createDownloadVerification(productId: string) {
-  return (
-    await prisma.downloadVerification.create({
-      data: {
-        productId,
-        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
-      },
-    })
-  ).id;
 }
