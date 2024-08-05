@@ -44,10 +44,8 @@ export async function POST(req: NextRequest) {
 
     const downloadVerificationId = await createDownloadVerification(productId);
 
-    // "Call me Rent Car <>"
-
     await resend.emails.send({
-      from: `Support <support@callmerentcar.app>`,
+      from: `Support <your-domain>`,
       to: email,
       subject: "Order Confirmation",
       react: (

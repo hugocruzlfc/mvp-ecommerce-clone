@@ -78,7 +78,7 @@ export async function emailOrderHistory(
   });
 
   const data = await resend.emails.send({
-    from: "Support <support@callmerentcar.app>",
+    from: "Support <your-domain>",
     to: user.email,
     subject: "Order History",
     react: <OrderHistoryEmail orders={await Promise.all(orders)} />,
